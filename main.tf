@@ -1,10 +1,10 @@
 /*  3 tier aplication */
 provider "aws" {
-  version = "~> 2.0"
+  version = "~> 4.0"
   region  = var.region
 }
 
-resource aws_vpc "3T-App" {
+resource aws_vpc "App-3T" {
   cidr_block           = var.address_space
   enable_dns_hostnames = true
 
@@ -13,7 +13,7 @@ resource aws_vpc "3T-App" {
   }
 }
 
-resource aws_subnet "3T-App" {
+resource aws_subnet "App-3T" {
   vpc_id     = aws_vpc.hashicat.id
   cidr_block = var.subnet_prefix
 
@@ -22,7 +22,7 @@ resource aws_subnet "3T-App" {
   }
 }
 
-resource aws_security_group "3T-App" {
+resource aws_security_group "App-3T" {
   name = "${var.prefix}-security-group"
 
   vpc_id = aws_vpc.hashicat.id
